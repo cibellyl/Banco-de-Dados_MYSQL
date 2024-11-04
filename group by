@@ -1,0 +1,37 @@
+create database loja;
+use loja;
+create table vendas (
+id_venda int primary key,
+produto varchar(50),
+categoria varchar(50),
+quantidade int,
+preco_unitario decimal(10,2)
+);
+
+insert into vendas(id_venda, produto, categoria, quantidade, preco_unitario) values
+(1, 'caderno', 'papelaria', 10,5.00),
+(2, 'caneta', 'papelaria', 20,1.50),
+(3, 'lápis', 'papelaria', 15,1.00),
+(4, 'livro', 'livro', 5,25.00),
+(5, 'livro de arte', 'livro', 2,.00);
+
+ select categoria, count(*) as  total_cat
+ from vendas
+ group by categoria;
+
+select  categoria, sum(quantidade * preco_unitario) as total
+from vendas
+group by categoria;
+
+select categoria, avg(preco_unitario) as total
+from vendas
+group by categoria;
+
+select categoria, max(preco_unitario) as total_max, min(preco_unitario) as total_min
+from vendas
+group by categoria;
+
+select categoria, sum(quantidade * preco_unitario) as total
+from vendas
+group by categoria
+having total > 100;
